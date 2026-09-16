@@ -1,6 +1,26 @@
 # Análisis de Sistemas II
 
-Exámenes de práctica basados en las presentaciones de las semanas 5 a 9. Incluyen casos fintech, selección de patrones GoF y refactorización explicada.
+Cinco exámenes de 12 preguntas (60 en total) basados en las presentaciones de las semanas 5 a 9. Incluyen casos fintech, selección de patrones GoF y tres refactorizaciones explicadas.
+
+La carpeta `analisis-de-sistema` contiene los HTML. Se usa este nombre sin tildes ni espacios para facilitar sus URLs. La portada está en `index.html`.
+
+## Uso
+
+Abre `index.html` o sirve la carpeta con `python -m http.server 8000`. No hay dependencias de ejecución, servicios externos ni recolección de datos. Las selecciones y textos no se guardan al recargar. Las respuestas están disponibles para estudiar: no es un sistema de evaluación vigilada.
+
+Cada examen califica sobre 15 (1.25 por acierto). Omitidas e incorrectas valen cero. Al cambiar una respuesta después de calificar, la nota anterior se invalida. Las preguntas abiertas del taller se autoevalúan con rúbricas independientes.
+
+## GitHub Pages
+
+En Settings → Pages selecciona Deploy from a branch, rama `main`, carpeta `/ (root)` y guarda. La URL esperada después de la publicación es https://cherreragt.github.io/analisis-de-sistemas/ . La existencia del código no implica que Pages ya esté activado.
+
+## Edición y referencias
+
+El banco está en `banco.mjs`; `node generar.mjs` regenera los HTML. Se entregan HTML estáticos, por lo que GitHub Pages no necesita ejecutar Node. Las explicaciones citan el nombre del PDF y la página física del archivo, no necesariamente el folio impreso. Los PDF originales no se republican.
+
+Fuentes: Semana5-Componentes-y-Patrones-GoF.pdf; Semana6-Presentacion-APIs-Contratos-OpenAPI.pdf; Semana7-Presentacion-Analisis-Sistemas-II-037.pdf; Semana8-Presentacion-Analisis-Sistemas-II-037.pdf; Semana9_Presentacion.pdf.
+
+Los escenarios y las soluciones de código son adaptaciones didácticas originales. Los fragmentos TypeScript usan contratos del dominio que se señalan explícitamente y no pretenden ser un servicio financiero completo. La fábrica con switch del material se distingue del Factory Method clásico. El ejercicio de mora de Semana 7 sigue el ejemplo numérico de su página física 24.
 
 ## UX y UI
-Diseño responsive, navegación por teclado, foco visible, controles con etiquetas y retroalimentación explicada. Las respuestas de práctica no son un examen oficial.
+Diseño responsive con cuadrícula adaptable, controles táctiles amplios, navegación por teclado, foco visible, radios con etiquetas, grupos con fieldset/legend, estados textuales además del color, aviso de progreso y foco en el resultado. El contenido y las soluciones pueden leerse sin JavaScript; la calificación automática lo requiere. Las respuestas de práctica no son un examen oficial.

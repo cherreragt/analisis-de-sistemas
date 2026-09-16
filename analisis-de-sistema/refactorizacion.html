@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Taller de refactorización · Análisis de Sistemas II</title><meta name="description" content="Practica con casos fintech, preguntas explicadas y referencias a las semanas 5 a 9."><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="estilos.css"><script src="examen.js" defer></script></head>
+<body><a class="saltar" href="#contenido">Saltar al contenido</a><header><div class="marca"><span class="logo" aria-hidden="true">AS</span><div>ANÁLISIS DE SISTEMAS II<small>Cuaderno de práctica · Módulo II</small></div></div><nav aria-label="Exámenes por semana"><a href="index.html" >Inicio</a><a href="semana-5.html" >Semana 5</a><a href="semana-6.html" >Semana 6</a><a href="semana-7.html" >Semana 7</a><a href="semana-8.html" >Semana 8</a><a href="semana-9.html" >Semana 9</a><a href="refactorizacion.html" aria-current="page">Taller de código</a></nav></header><main id="contenido"><div class="encabezado"><p class="etiqueta">TALLER · SEMANA 5 + APLICACIÓN</p><h1>Refactorizar con propósito</h1><p>Identifica el problema, escribe tu solución y compárala con la propuesta. Los fragmentos son esquemas didácticos TypeScript con contratos del dominio; no son un sistema financiero ejecutable.</p><p>Autoevaluación: un punto por criterio de la rúbrica. Estas respuestas abiertas no reciben una nota automática. Tu texto permanece solo en esta página y se pierde al recargar.</p></div><article class="pregunta"><h2>1. Sustituir condicionales con Strategy</h2><p>La calculadora decide internamente qué regla de mora ejecutar. Refactoriza para recibir una estrategia; conserva los resultados de las reglas ya existentes y deja las tasas en una política externa. Escribe la interfaz, dos implementaciones y el consumidor.</p><h3>Código inicial</h3><pre tabindex="0" aria-label="Código inicial del ejercicio 1"><code>class Calculadora {
+  calcular(tipo: string, capital: Dinero, dias: number): Dinero {
+    if (tipo === 'fija') return calcularFija(capital, dias, politicaFija);
+    if (tipo === 'tramos') return calcularTramos(capital, dias, politicaTramos);
+    throw new Error('Política desconocida');
+  }
+}</code></pre><label class="campo" for="propuesta-0">Tu propuesta y justificación</label><textarea id="propuesta-0" rows="9" spellcheck="false" placeholder="Explica qué cambia, qué se conserva y por qué elegiste ese patrón."></textarea><details><summary>Comparar con la solución y rúbrica</summary><div class="explicacion"><h3>Propuesta de refactorización</h3><pre tabindex="0" aria-label="Solución del ejercicio 1"><code>// Esquema TypeScript: Dinero, Politica y los cálculos
+// son contratos del dominio existentes, no flotantes monetarios.
+interface EstrategiaMora {
+  calcular(capital: Dinero, dias: number): Dinero;
+}
+class MoraFija implements EstrategiaMora {
+  constructor(private readonly politica: PoliticaFija) {}
+  calcular(capital: Dinero, dias: number): Dinero {
+    return calcularFija(capital, dias, this.politica);
+  }
+}
+class MoraPorTramos implements EstrategiaMora {
+  constructor(private readonly politica: PoliticaTramos) {}
+  calcular(capital: Dinero, dias: number): Dinero {
+    return calcularTramos(capital, dias, this.politica);
+  }
+}
+class Calculadora {
+  constructor(private readonly estrategia: EstrategiaMora) {}
+  calcular(capital: Dinero, dias: number): Dinero {
+    return this.estrategia.calcular(capital, dias);
+  }
+}
+// La composición selecciona según la política del crédito.
+const calculadora = new Calculadora(new MoraFija(politicaFija));</code></pre><p>La calculadora deja de conocer tipos concretos. La selección se mueve al punto de composición; no desaparece mágicamente del sistema. Strategy encaja porque varía el algoritmo. Factory podría complementar la creación, pero no sustituye el contrato de comportamiento. Las funciones existentes se conservan para no alterar resultados. Para mora por tramos, redondea solo al final y respeta la política histórica del crédito.</p><h3>Rúbrica: 4 puntos</h3><ul><li>Interfaz común y consumidor que depende de ella.</li><li>Implementaciones independientes y políticas recibidas como datos.</li><li>Mismos resultados para los casos anteriores, sin modificar sus pruebas para ocultar errores.</li><li>Explicación de Strategy frente a Factory y de la selección fuera de la calculadora.</li></ul><p class="fuente">Base: Semana5-Componentes-y-Patrones-GoF.pdf · páginas 21, 24, 25 del archivo PDF.</p></div></details></article><article class="pregunta"><h2>2. Componer cargos con Decorator</h2><p>Una cuota base admite seguro y gasto de gestión fijo, opcionales y combinables. El código agrega una subclase para cada combinación. Reemplaza esa jerarquía por composición. Los cargos de este ejercicio son montos ya calculados y de la misma moneda.</p><h3>Código inicial</h3><pre tabindex="0" aria-label="Código inicial del ejercicio 2"><code>class CuotaConSeguro extends CuotaBase { /* ... */ }
+class CuotaConGestion extends CuotaBase { /* ... */ }
+class CuotaConSeguroYGestion extends CuotaBase { /* ... */ }</code></pre><label class="campo" for="propuesta-1">Tu propuesta y justificación</label><textarea id="propuesta-1" rows="9" spellcheck="false" placeholder="Explica qué cambia, qué se conserva y por qué elegiste ese patrón."></textarea><details><summary>Comparar con la solución y rúbrica</summary><div class="explicacion"><h3>Propuesta de refactorización</h3><pre tabindex="0" aria-label="Solución del ejercicio 2"><code>interface Cuota { monto(): Dinero; }
+class CuotaBase implements Cuota {
+  constructor(private readonly valor: Dinero) {}
+  monto(): Dinero { return this.valor; }
+}
+class ConCargo implements Cuota {
+  constructor(
+    private readonly interna: Cuota,
+    private readonly cargo: Dinero
+  ) {}
+  monto(): Dinero { return this.interna.monto().mas(this.cargo); }
+}
+const cuota: Cuota = new ConCargo(
+  new ConCargo(new CuotaBase(base), seguro), gestion
+);</code></pre><p>CuotaBase y ConCargo cumplen la misma interfaz. Cada envoltorio delega al objeto interno y añade un cargo; así se evitan clases para todas las combinaciones. Se asume Dinero inmutable con validación de moneda. El ejercicio suma cargos fijos: calcular intereses sobre otros cargos o definir prelación de un pago son reglas diferentes que este ejemplo no implementa.</p><h3>Rúbrica: 4 puntos</h3><ul><li>Base y decorador cumplen el mismo contrato.</li><li>El decorador recibe y delega a otra Cuota.</li><li>Composición de dos cargos sin crear una clase para la combinación.</li><li>No usar flotantes monetarios ni confundir total con prelación del pago.</li></ul><p class="fuente">Base: Semana5-Componentes-y-Patrones-GoF.pdf · páginas 18, 24 del archivo PDF.</p></div></details></article><article class="pregunta"><h2>3. Desacoplar reacciones con Observer</h2><p>MotorDeMora conoce las clases de correo, tablero y auditoría. Refactoriza para permitir incorporar otro receptor sin editar el motor. Explica además qué no garantiza un Observer en memoria.</p><h3>Código inicial</h3><pre tabindex="0" aria-label="Código inicial del ejercicio 3"><code>class MotorDeMora {
+  registrarEntrada(evento: EventoMora): void {
+    correo.enviar(evento);
+    tablero.actualizar(evento);
+    auditoria.registrar(evento);
+  }
+}</code></pre><label class="campo" for="propuesta-2">Tu propuesta y justificación</label><textarea id="propuesta-2" rows="9" spellcheck="false" placeholder="Explica qué cambia, qué se conserva y por qué elegiste ese patrón."></textarea><details><summary>Comparar con la solución y rúbrica</summary><div class="explicacion"><h3>Propuesta de refactorización</h3><pre tabindex="0" aria-label="Solución del ejercicio 3"><code>interface ObservadorMora {
+  alEntrarEnMora(evento: EventoMora): void;
+}
+class MotorDeMora {
+  private readonly observadores: ObservadorMora[] = [];
+  suscribir(observador: ObservadorMora): void {
+    this.observadores.push(observador);
+  }
+  registrarEntrada(evento: EventoMora): void {
+    for (const observador of this.observadores) {
+      observador.alEntrarEnMora(evento);
+    }
+  }
+}
+class AuditorMora implements ObservadorMora {
+  constructor(private readonly auditoria: Auditoria) {}
+  alEntrarEnMora(evento: EventoMora): void {
+    this.auditoria.registrar(evento);
+  }
+}
+motor.suscribir(new AuditorMora(auditoria));
+// Correo y tablero se adaptan al mismo contrato.</code></pre><p>El motor depende de ObservadorMora y publica sin conocer el trabajo de cada suscriptor. Este esquema ilustra el desacoplamiento del PDF; no es una infraestructura de mensajería durable. Deben definirse errores de receptores, duplicados y persistencia según los requisitos. Tampoco hay que emitir entrada en mora repetidamente si solo se vuelve a consultar una cuota ya morosa.</p><h3>Rúbrica: 4 puntos</h3><ul><li>Lista de suscriptores tipada con una interfaz.</li><li>Reacciones concretas fuera del motor.</li><li>Nuevo receptor agregado desde la composición sin editar el publicador.</li><li>Diferenciar notificación en memoria de garantías de entrega y controlar eventos duplicados.</li></ul><p class="fuente">Base: Semana5-Componentes-y-Patrones-GoF.pdf · páginas 22, 24 del archivo PDF.</p></div></details></article></main><footer>Casos de práctica originales basados en las presentaciones proporcionadas. No es el examen oficial. Las referencias usan la posición de página en el PDF, que puede diferir del número impreso.</footer></body></html>
