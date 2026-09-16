@@ -1,6 +1,6 @@
 # Análisis de Sistemas II
 
-Cinco exámenes de 12 preguntas (60 en total) basados en las presentaciones de las semanas 5 a 9. Incluyen casos fintech, selección de patrones GoF y tres refactorizaciones explicadas.
+Cinco exámenes con 60 casos y 5 preguntas de datos clave (65 en total) basados en las presentaciones de las semanas 5 a 9. Incluyen casos fintech, selección de patrones GoF y tres refactorizaciones explicadas.
 
 La carpeta `analisis-de-sistema` contiene los HTML. Se usa este nombre sin tildes ni espacios para facilitar sus URLs. La portada está en `index.html`.
 
@@ -8,7 +8,7 @@ La carpeta `analisis-de-sistema` contiene los HTML. Se usa este nombre sin tilde
 
 Abre `index.html` o sirve la carpeta con `python -m http.server 8000`. No hay dependencias de ejecución, servicios externos ni recolección de datos. Las selecciones y textos no se guardan al recargar. Las respuestas están disponibles para estudiar: no es un sistema de evaluación vigilada.
 
-Cada examen califica sobre 15 (1.25 por acierto). Omitidas e incorrectas valen cero. Al cambiar una respuesta después de calificar, la nota anterior se invalida. Las preguntas abiertas del taller se autoevalúan con rúbricas independientes.
+Cada examen califica sobre 15: aciertos / total de preguntas × 15. Omitidas e incorrectas valen cero. Al cambiar una respuesta después de calificar, la nota anterior se invalida. Las preguntas abiertas del taller se autoevalúan con rúbricas independientes.
 
 ## GitHub Pages
 
@@ -24,3 +24,7 @@ Los escenarios y las soluciones de código son adaptaciones didácticas original
 
 ## UX y UI
 Diseño responsive con cuadrícula adaptable, controles táctiles amplios, navegación por teclado, foco visible, radios con etiquetas, grupos con fieldset/legend, estados textuales además del color, aviso de progreso y foco en el resultado. El contenido y las soluciones pueden leerse sin JavaScript; la calificación automática lo requiere. Las respuestas de práctica no son un examen oficial.
+
+## Vista previa del enlace
+
+Ambos índices declaran título y descripción Open Graph y Twitter como «Resumen de casos de uso». Las páginas de examen mantienen metadatos propios. Los metadatos son de texto; la aplicación que recibe el enlace decide cómo mostrarlos y puede conservar una versión en caché.

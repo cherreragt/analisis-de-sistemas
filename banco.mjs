@@ -1,4 +1,4 @@
-// Casos originales de práctica. Referencias: páginas físicas de los PDF.
+// Casos y datos clave basados en los PDF. Referencias: páginas físicas.
 export const examenes = [
   {
     "semana": 5,
@@ -188,6 +188,21 @@ export const examenes = [
         "explicacion": "El material advierte contra la sobreingeniería. Un patrón es una estructura útil para un problema recurrente, no una obligación ni un reemplazo del análisis.",
         "paginas": [
           12
+        ]
+      },
+      {
+        "tema": "Dato clave",
+        "pregunta": "En el material se utiliza la expresión Gang of Four (GoF) para identificar a los autores del catálogo de 23 patrones. ¿Quiénes forman este grupo?",
+        "opciones": [
+          "Jakob Nielsen, Donald Norman, Rolf Molich y Jesse James Garrett",
+          "Erich Gamma, Richard Helm, Ralph Johnson y John Vlissides",
+          "Tony Tam, Bertrand Meyer, Martin Fowler y Robert Martin",
+          "Erich Gamma, Tony Tam, Donald Norman y Richard Helm"
+        ],
+        "correcta": 1,
+        "explicacion": "GoF se refiere a Gamma, Helm, Johnson y Vlissides, autores del catálogo publicado en 1994. Sus 23 patrones se agrupan en creacionales, estructurales y de comportamiento; no es el nombre de una herramienta.",
+        "paginas": [
+          13
         ]
       }
     ]
@@ -382,6 +397,37 @@ export const examenes = [
         "paginas": [
           14
         ]
+      },
+      {
+        "tema": "Dato clave",
+        "pregunta": "¿Quién creó Swagger en 2011 y en qué empresa surgió el proyecto?",
+        "opciones": [
+          "Jakob Nielsen, en Nielsen Norman Group",
+          "Bertrand Meyer, en la Linux Foundation",
+          "Tony Tam, en Wordnik",
+          "Jesse James Garrett, en SmartBear"
+        ],
+        "correcta": 2,
+        "explicacion": "Tony Tam creó Swagger en Wordnik para describir la API de su diccionario en línea. La presentación sitúa la especificación 1.0 en agosto de 2011. Este origen ayuda a distinguir el proyecto original de su evolución posterior a OpenAPI.",
+        "paginas": [
+          23
+        ]
+      },
+      {
+        "tema": "Dato clave",
+        "pregunta": "Un compañero dice que OpenAPI y Swagger UI son exactamente lo mismo. Según la evolución del proyecto explicada en clase, ¿qué aclaración es correcta?",
+        "opciones": [
+          "OpenAPI es la especificación; Swagger UI es una herramienta que permite visualizar e interactuar con ese contrato",
+          "Swagger UI es el lenguaje de programación de OpenAPI",
+          "OpenAPI es una base de datos y Swagger UI es su servidor",
+          "OpenAPI y Swagger UI son dos nombres del mismo archivo"
+        ],
+        "correcta": 0,
+        "explicacion": "En 2015 se donó la especificación a la OpenAPI Initiative y pasó a llamarse OpenAPI Specification. La marca Swagger permaneció asociada a herramientas. El contrato puede guardarse como openapi.yaml; Swagger UI es un visor, no la especificación.",
+        "paginas": [
+          23,
+          25
+        ]
       }
     ]
   },
@@ -573,6 +619,21 @@ export const examenes = [
         "paginas": [
           24,
           25
+        ]
+      },
+      {
+        "tema": "Dato clave",
+        "pregunta": "¿A quién se atribuye el modelo de los cinco planos de la experiencia de usuario: estrategia, alcance, estructura, esqueleto y superficie?",
+        "opciones": [
+          "Donald Norman",
+          "Jakob Nielsen",
+          "Tony Tam",
+          "Jesse James Garrett"
+        ],
+        "correcta": 3,
+        "explicacion": "Jesse James Garrett es el autor del modelo de los cinco planos presentado en la sesión. Permite relacionar necesidades y objetivos con funciones, organización, disposición y apariencia.",
+        "paginas": [
+          7
         ]
       }
     ]
@@ -767,6 +828,21 @@ export const examenes = [
         "explicacion": "La escala va de 0 a 4. Un bloqueo de la tarea crítica puede justificar 4, pero el informe debe aportar evidencia, ubicación e impacto, además de una corrección concreta.",
         "paginas": [
           16
+        ]
+      },
+      {
+        "tema": "Dato clave",
+        "pregunta": "¿Qué autor depuró en 1994 la lista de las diez heurísticas de usabilidad que se utiliza en el curso?",
+        "opciones": [
+          "Jakob Nielsen",
+          "Jesse James Garrett",
+          "Tony Tam",
+          "Bertrand Meyer"
+        ],
+        "correcta": 0,
+        "explicacion": "Jakob Nielsen depuró la lista de diez heurísticas en 1994. El material también reconoce que Rolf Molich y Nielsen publicaron el método de evaluación heurística en 1990: no deben confundirse ambos hitos.",
+        "paginas": [
+          13
         ]
       }
     ]
