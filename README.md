@@ -2,7 +2,7 @@
 
 Cinco exámenes con 60 casos y 5 preguntas de datos clave (65 en total) basados en las presentaciones de las semanas 5 a 9. Incluyen casos fintech, selección de patrones GoF y tres refactorizaciones explicadas.
 
-También incluye cinco pruebas de preguntas directas, una por semana, con 8 preguntas y 3 opciones cada una. Estas pruebas repasan definiciones, propósitos, diferencias, autores y datos esenciales sin usar escenarios. Se accede desde `analisis-de-sistema/preguntas-directas.html`.
+También incluye cinco pruebas de preguntas directas, una por semana, con 106 preguntas en total y 3 opciones por pregunta. Cada concepto se evalúa por separado: 20 preguntas en las semanas 5, 6, 7 y 9, y 26 en la semana 8 por la amplitud de Nielsen, WCAG 2.2 y POUR. Se accede desde `analisis-de-sistema/preguntas-directas.html`.
 
 La carpeta `analisis-de-sistema` contiene los HTML. Se usa este nombre sin tildes ni espacios para facilitar sus URLs. La portada está en `index.html`.
 
