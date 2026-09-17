@@ -2,6 +2,8 @@
 
 Cinco exámenes con 60 casos y 5 preguntas de datos clave (65 en total) basados en las presentaciones de las semanas 5 a 9. Incluyen casos fintech, selección de patrones GoF y tres refactorizaciones explicadas.
 
+También incluye cinco pruebas de preguntas directas, una por semana, con 8 preguntas y 3 opciones cada una. Estas pruebas repasan definiciones, propósitos, diferencias, autores y datos esenciales sin usar escenarios. Se accede desde `analisis-de-sistema/preguntas-directas.html`.
+
 La carpeta `analisis-de-sistema` contiene los HTML. Se usa este nombre sin tildes ni espacios para facilitar sus URLs. La portada está en `index.html`.
 
 ## Uso
@@ -16,7 +18,7 @@ En Settings → Pages selecciona Deploy from a branch, rama `main`, carpeta `/ (
 
 ## Edición y referencias
 
-El banco está en `banco.mjs`; `node generar.mjs` regenera los HTML. Se entregan HTML estáticos, por lo que GitHub Pages no necesita ejecutar Node. Las explicaciones citan el nombre del PDF y la página física del archivo, no necesariamente el folio impreso. Los PDF originales no se republican.
+Los casos están en `banco.mjs` y las preguntas conceptuales en `banco-directas.mjs`; `node generar.mjs` regenera los HTML. Se entregan HTML estáticos, por lo que GitHub Pages no necesita ejecutar Node. Las explicaciones citan el nombre del PDF y la página física del archivo, no necesariamente el folio impreso. Los PDF originales no se republican.
 
 Fuentes: Semana5-Componentes-y-Patrones-GoF.pdf; Semana6-Presentacion-APIs-Contratos-OpenAPI.pdf; Semana7-Presentacion-Analisis-Sistemas-II-037.pdf; Semana8-Presentacion-Analisis-Sistemas-II-037.pdf; Semana9_Presentacion.pdf.
 
